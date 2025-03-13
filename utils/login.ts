@@ -21,3 +21,15 @@ export async function loginToMicrosoft(page: Page) {
 
     await page.waitForLoadState('networkidle');
 }
+
+export async function loginAndOpenExcel(page: Page) {
+    await loginToMicrosoft(page);
+
+    await page.goto('https://www.office.com/launch/excel');
+
+    await page.waitForLoadState('networkidle');
+
+    await page.click('text=New blank workbook');
+
+    await page.waitForSelector('div[aria-label="Sheet1"]');
+}
